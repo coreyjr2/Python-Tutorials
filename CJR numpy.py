@@ -14,6 +14,14 @@ easier for those who are curious, I am happy to do so. Open science is just
 as much about open education as it is about all of the other aspects of the job!'''
 
 
+'''Python is a very general programming language, so while that makes it very flexible,
+it does not have some of the same base functionality for scientific data analysis that
+languages like R or MATLAB may have. This is not to say it cannot accomplish 
+the same functionality, it just is not as efficient. As such, many libraries, 
+such as NumPy, are great tools for utilizing Python to help analyze scientific data. 
+This tutorial will explain some of the basics of arrays and mathematical operations with 
+arrays'''
+
 
 #Let's make some arrays
 
