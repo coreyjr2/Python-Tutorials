@@ -71,7 +71,7 @@ center_vox_value
 
 '''So that's nice that we can extract data from the image. But there's more to it.
 If we were to superimpose the epi and anatomical image, we would see that they 
-would be overlapping in 3d space... An example. If we want to reference 
+would be overlapping in 3D space... An example. If we want to reference 
 the epi and anatomical images to one another, a voxel that is the amygdala in one 
 might end up being in the motor cortex in another. Tt doesn't take a lot
 of knowledge about brain anatomy to see how that would be big bad'''
@@ -80,6 +80,48 @@ of knowledge about brain anatomy to see how that would be big bad'''
 in space to be aligned with one another. First, we will need to create what's called a reference
 space. The reference space is used to map both images to some common ground'''
 
+'''a way to think about it might be like this: if we are in (0,0,0) of the image, that puts us in a 
+corner of the image. But we want to transform the image such that the coordinate
+(0,0,0) is now at the center. Linear tranformations are helpful tools to allow 
+us to do this. The affine transformation is what we will use. Affine matrices are 4x4 in 
+dimension, and their axes are right, anterior, and superior of the origin. So if you have values above 0
+for any of these dimensions, that means you are more right, anterior, or superior respectively. 
+Negative values would mean the opposite.'''
 
-###code for spatial transformations here
+
+ # Set numpy to print 3 decimal points and suppress small values
+import numpy as np
+np.set_printoptions(precision=3, suppress=True)
+# Print the affine
+affine = epi.affine
+affine
+
+'''The affine is best thought of as a series of transformations in space. First thing 
+you'd do is scale up the voxels to the size up to where you want them to be. After,
+you'd transform them in the same space. Lastly, it will move it to be in the same
+position. What sort of linear transformations exactly might these be?'''
+
+'''First is scaling. We want to make the voxels be a meaningful size. Next is rotation, so that they are 
+ending up aligned with one another. Lastly you shear, to strech out the image so that it all neatly aligns
+with the reference.'''
+
+
+'''So when you import spatial image data into nibabel, you will get data that are represented in a 
+structure containing three things:
+    
+    1. Your images (these can be 3D for structural, or 4D for anything that 
+        was done in a time series)
+    2. The affine matrix, which what is used above to transform data in space
+    3. Image metadata
+    '''
+
+#We can take a peek at the header if you'd like, but it doesn't too much in most cases
+print(epi_header)
+    
+
+'''Now maybe we want to create some new images. Here's how we would do that.'''
+
+
+
+
 
