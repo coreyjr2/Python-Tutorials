@@ -20,12 +20,6 @@ plotting.plot_glass_brain(dataset)
 
 
 
-
-
-
-
-
-
 #Load the dataset, just one subject so it doesn't crash your computer
 dataset = datasets.fetch_development_fmri(n_subjects=1)
 func_filename = dataset.func[0]
